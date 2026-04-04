@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>嘉義阿里山三天兩夜歡樂之旅 4/26–28</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark:  #1a5c38;
+      --green:       #2d7a4f;
+      --green-light: #e8f5ee;
+      --gold:        #c9913b;
+      --gold-light:  #fdf3e3;
+      --red:         #c0392b;
+      --red-light:   #fdecea;
+      --sky:         #2471a3;
+      --sky-light:   #eaf4fb;
+      --amber:       #d35400;
+      --amber-light: #fef5ec;
+      --cream:       #fdf9f4;
+      --text:        #2c3e50;
+      --text-mid:    #555;
+      --text-soft:   #888;
+      --border:      #e0d8cc;
+      --shadow:      0 4px 18px rgba(0,0,0,.10);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 18px;           /* 大字體 – 方便長輩閱讀 */
+      line-height: 1.8;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      background: linear-gradient(160deg, #0b3d22 0%, #1a5c38 45%, #2d8a56 80%, #4aad74 100%);
+      color: #fff;
+      padding: 64px 24px 110px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 90px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 90' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,90 L0,45 L120,30 L240,55 L360,20 L480,50 L600,15 L720,48 L840,22 L960,46 L1080,12 L1200,42 L1320,28 L1440,50 L1440,90 Z' fill='%23fdf9f4'/%3E%3C/svg%3E") no-repeat bottom / cover;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      border: 1.5px solid rgba(255,255,255,.4);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 46px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px rgba(0,0,0,.25);
+      margin-bottom: 14px;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .hero-meta span {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 40px;
+      padding: 7px 20px;
+      font-size: 16px;
+    }
+    .mountains {
+      font-size: 72px;
+      line-height: 1;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+    }
+
+    /* ============================================================
+       STICKY NAV
+    ============================================================ */
+    .day-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .day-nav::-webkit-scrollbar { display: none; }
+    .day-nav a {
+      flex: 1; min-width: 120px;
+      text-align: center;
+      padding: 14px 8px;
+      font-size: 16px; font-weight: 700;
+      text-decoration: none;
+      color: var(--text-mid);
+      border-bottom: 3px solid transparent;
+      transition: all .25s;
+      white-space: nowrap;
+    }
+    .day-nav a:hover { color: var(--green-dark); border-color: var(--green); }
+    .day-nav a.d1 { color: var(--amber); }
+    .day-nav a.d1:hover, .day-nav a.d1.active { border-color: var(--amber); color: var(--amber); }
+    .day-nav a.d2 { color: var(--green-dark); }
+    .day-nav a.d2:hover, .day-nav a.d2.active { border-color: var(--green); color: var(--green-dark); }
+    .day-nav a.d3 { color: var(--sky); }
+    .day-nav a.d3:hover, .day-nav a.d3.active { border-color: var(--sky); color: var(--sky); }
+    .day-nav a.alert { color: var(--red); }
+    .day-nav a.alert:hover { border-color: var(--red); }
+
+    /* ============================================================
+       RESERVATION ALERT BANNER
+    ============================================================ */
+    .reservation-banner {
+      background: var(--red);
+      color: #fff;
+      padding: 14px 24px;
+      text-align: center;
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .reservation-banner .pulse {
+      display: inline-block;
+      animation: pulse 1.2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.4;} }
+
+    /* ============================================================
+       WRAPPER
+    ============================================================ */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+    /* ============================================================
+       SECTION HEADERS (Day banners)
+    ============================================================ */
+    .day-section { padding-top: 48px; padding-bottom: 48px; }
+
+    .day-header {
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 36px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .day-header.d1 { background: linear-gradient(135deg, #d35400, #e67e22); }
+    .day-header.d2 { background: linear-gradient(135deg, #1a5c38, #2d8a56); }
+    .day-header.d3 { background: linear-gradient(135deg, #1a6fa3, #2980b9); }
+
+    .day-header .day-icon { font-size: 48px; line-height: 1; }
+    .day-header .day-info h2 { font-size: 26px; font-weight: 900; }
+    .day-header .day-info p { font-size: 16px; opacity: .85; margin-top: 4px; }
+
+    /* ============================================================
+       TIMELINE
+    ============================================================ */
+    .timeline { position: relative; padding-left: 30px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 10px; top: 0; bottom: 0;
+      width: 3px; background: var(--border);
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       ACTIVITY CARD
+    ============================================================ */
+    .activity {
+      position: relative;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--border);
+      transition: transform .2s;
+    }
+    .activity:hover { transform: translateY(-2px); }
+    .activity::before {
+      content: '';
+      position: absolute; left: -37px; top: 22px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px var(--border);
+    }
+
+    /* colour variants */
+    .activity.d1 { border-left-color: var(--amber); }
+    .activity.d1::before { background: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+    .activity.d2 { border-left-color: var(--green); }
+    .activity.d2::before { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+    .activity.d3 { border-left-color: var(--sky); }
+    .activity.d3::before { background: var(--sky); box-shadow: 0 0 0 2px var(--sky); }
+    .activity.alert { border-left-color: var(--red); background: var(--red-light); }
+    .activity.alert::before { background: var(--red); box-shadow: 0 0 0 2px var(--red); }
+
+    .activity-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .activity-icon { font-size: 30px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+    .activity-main { flex: 1; min-width: 200px; }
+    .activity-name {
+      font-size: 20px; font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .activity-sub {
+      font-size: 15px;
+      color: var(--text-mid);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .activity-sub span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green-dark);
+      border-radius: 30px;
+      padding: 3px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .tag.red { background: var(--red-light); color: var(--red); }
+    .tag.amber { background: var(--amber-light); color: var(--amber); }
+    .tag.sky { background: var(--sky-light); color: var(--sky); }
+    .tag.gold { background: var(--gold-light); color: var(--gold); }
+
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-dark);
+      color: #fff;
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+      margin-top: 10px;
+    }
+    .map-btn:hover { background: var(--green); }
+    .map-btn.amber { background: var(--amber); }
+    .map-btn.amber:hover { background: #e67e22; }
+    .map-btn.sky { background: var(--sky); }
+    .map-btn.sky:hover { background: #2980b9; }
+
+    /* note box */
+    .note {
+      margin-top: 12px;
+      background: #f8f5f0;
+      border-left: 4px solid var(--gold);
+      border-radius: 0 10px 10px 0;
+      padding: 10px 14px;
+      font-size: 15px;
+      color: var(--text-mid);
+    }
+    .note.red { border-color: var(--red); background: var(--red-light); color: var(--red); font-weight: 600; }
+    .note.green { border-color: var(--green); background: var(--green-light); color: var(--green-dark); }
+
+    /* option rows */
+    .options { margin-top: 12px; }
+    .option-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+    .option-item {
+      background: #f5f2ee;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .option-item strong { font-weight: 700; }
+
+    /* ============================================================
+       SENIOR TIPS BOX
+    ============================================================ */
+    .senior-box {
+      background: linear-gradient(135deg, #fff9e6, #fdf3d0);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .senior-box h3 {
+      font-size: 17px; font-weight: 700; color: var(--gold);
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .senior-box ul { list-style: none; padding: 0; }
+    .senior-box ul li {
+      padding: 5px 0;
+      font-size: 16px;
+      color: var(--text-mid);
+      display: flex;
+      gap: 8px;
+    }
+    .senior-box ul li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    /* ============================================================
+       TIMETABLE
+    ============================================================ */
+    .timetable {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+    .timetable h3 {
+      font-size: 18px; font-weight: 700; color: var(--green-dark);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .timetable-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 8px;
+    }
+    .timetable-cell {
+      background: var(--green-light);
+      border-radius: 10px;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 16px; font-weight: 700;
+      color: var(--green-dark);
+    }
+
+    /* ============================================================
+       MENU CARD
+    ============================================================ */
+    .menu-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+    .menu-card h3 {
+      font-size: 18px; font-weight: 700; color: var(--sky);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 10px;
+    }
+    .menu-item {
+      background: var(--sky-light);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 16px; font-weight: 600;
+      color: var(--sky);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ============================================================
+       RETURN OPTIONS
+    ============================================================ */
+    .return-options {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+    .return-options h3 {
+      font-size: 18px; font-weight: 700; color: var(--text);
+      margin-bottom: 14px;
+    }
+    .return-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .return-item {
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      color: var(--text-mid);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+    }
+    .return-item .ri-icon { font-size: 28px; }
+
+    /* ============================================================
+       RESERVATION SECTION
+    ============================================================ */
+    .reservation-section {
+      background: var(--red-light);
+      border: 2px solid var(--red);
+      border-radius: 20px;
+      padding: 28px;
+      margin: 40px 0;
+    }
+    .reservation-section h2 {
+      color: var(--red);
+      font-size: 22px; font-weight: 900;
+      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .res-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      border-left: 5px solid var(--red);
+    }
+    .res-item h4 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .res-item p { font-size: 15px; color: var(--text-mid); }
+
+    /* ============================================================
+       PACKING / TIPS SECTION
+    ============================================================ */
+    .tips-section {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px;
+      margin: 40px 0;
+      box-shadow: var(--shadow);
+    }
+    .tips-section h2 {
+      font-size: 22px; font-weight: 900; color: var(--green-dark);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .tips-card {
+      border-radius: 14px;
+      padding: 18px;
+      border: 1.5px solid var(--border);
+    }
+    .tips-card h4 {
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tips-card ul { list-style: none; }
+    .tips-card ul li {
+      font-size: 14px; color: var(--text-mid);
+      padding: 3px 0;
+      display: flex; gap: 6px;
+    }
+    .tips-card ul li::before { content: '•'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    /* ============================================================
+       DIVIDER
+    ============================================================ */
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 8px 0 40px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,.8);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+    footer strong { color: #fff; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media(max-width:540px){
+      body { font-size: 16px; }
+      .day-header { flex-direction: column; align-items: flex-start; }
+      .activity-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="mountains">🏔️🌲🌿</div>
+  <div class="hero-badge">✈ 8人同樂出發</div>
+  <h1>嘉義・阿里山<br>三天兩夜歡樂之旅</h1>
+  <div class="hero-meta">
+    <span>📅 4月26日（六）～ 4月28日（一）</span>
+    <span>👥 8人同行</span>
+    <span>🌡️ 4月氣溫約 18–27°C（山區較涼）</span>
+  </div>
+</header>
+
+<!-- ===================== STICKY NAV ===================== -->
+<nav class="day-nav">
+  <a class="d1" href="#day1">🟠 第一天 台中→嘉義</a>
+  <a class="d2" href="#day2">🟢 第二天 阿里山</a>
+  <a class="d3" href="#day3">🔵 第三天 嘉義→回程</a>
+  <a class="alert" href="#reservations">🔴 預訂提醒</a>
+  <a href="#tips">🎒 旅遊小貼士</a>
+</nav>
+
+<!-- ===================== URGENT BANNER ===================== -->
+<div class="reservation-banner">
+  <span class="pulse">🔴</span>
+  重要提醒：<strong>4月10日前</strong>必須完成兩個訂位，勿忘！
+  <span class="pulse">🔴</span>
+</div>
+
+<!-- ===================== DAY 1 ===================== -->
+<section class="day-section" id="day1">
+  <div class="container">
+    <div class="day-header d1">
+      <div class="day-icon">🚗</div>
+      <div class="day-info">
+        <h2>第一天 ── 4月26日（六）</h2>
+        <p>台中精華景點 ➜ 抵達嘉義、夜市美食</p>
+      </div>
+    </div>
+
+    <!-- Senior tip -->
+    <div class="senior-box">
+      <h3>👴👵 銀髮族小提醒</h3>
+      <ul>
+        <li>今天路程最長，建議車上備足水、小零食，約每2小時停車休息一次</li>
+        <li>台中市區停車後步行距離短，全程適合長輩</li>
+        <li>下午到嘉義後建議先辦入住休息，晚上輕鬆逛夜市即可</li>
+      </ul>
+    </div>
+
+    <div class="timeline">
+
+      <!-- 集合 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🏁</div>
+          <div class="activity-main">
+            <div class="activity-name">08:00 ｜ 集合出發</div>
+            <div class="activity-sub">
+              <span>📍 新生街 大全聯超市前（可停車）</span>
+            </div>
+            <div style="margin-top:8px;">
+              <span class="tag amber">早餐</span>
+              <span style="font-size:15px; color:var(--text-mid); margin-left:8px;">附近麥當勞或自行解決後再出發</span>
+            </div>
+          </div>
+        </div>
+        <div class="note green">💡 建議：前一晚確認各人就位，準時出發才能把握台中時光！</div>
+      </div>
+
+      <!-- 筆記創始店 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">✏️</div>
+          <div class="activity-main">
+            <div class="activity-name">筆記創始店</div>
+            <div class="activity-sub">
+              <span>📍 神廟社口中山路520號</span>
+              <span>🕗 08:00–21:00</span>
+            </div>
+            <a class="map-btn amber" href="https://www.google.com/maps/search/?api=1&query=嘉義市中山路520號筆記創始店" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">☕ 嘉義超人氣咖啡老店，邊喝咖啡邊感受廟口文化氛圍</div>
+      </div>
+
+      <!-- 午餐 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🍱</div>
+          <div class="activity-main">
+            <div class="activity-name">午餐（二選一）</div>
+          </div>
+        </div>
+        <div class="options">
+          <div class="option-label">選項</div>
+          <div class="option-item">
+            <strong>🅐 山河控肉飯</strong><br>
+            📍 台灣大道三民路口<br>
+            <a class="map-btn amber" style="margin-top:8px; display:inline-flex;" href="https://www.google.com/maps/search/?api=1&query=台中市台灣大道三民路口山河控肉飯" target="_blank">🗺 地圖導航</a>
+          </div>
+          <div class="option-item">
+            <strong>🅑 渝舍餘味</strong><br>
+            📍 台中市南屯區公益路二段537號<br>
+            📞 04-2258-6111 &nbsp;｜&nbsp; 🕙 11:00–20:00<br>
+            <a class="map-btn amber" style="margin-top:8px; display:inline-flex;" href="https://www.google.com/maps/search/?api=1&query=台中市南屯區公益路二段537號渝舍餘味" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 甜點 -->
+      <!-- 宮眼雪科 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🍧</div>
+          <div class="activity-main">
+            <div class="activity-name">甜點①　宮眼雪科</div>
+            <div class="activity-sub">
+              <span>📍 台中市中區中山路20號</span>
+              <span>🕙 10:00–21:00</span>
+            </div>
+            <a class="map-btn amber" href="https://www.google.com/maps/search/?api=1&query=台中市中區中山路20號宮眼雪科" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🍧 台中人氣雪花冰，口感綿密如雪，必試！</div>
+      </div>
+
+      <!-- 長崎蛋糕 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🎂</div>
+          <div class="activity-main">
+            <div class="activity-name">甜點②　長崎屋蛋糕</div>
+            <div class="activity-sub">
+              <span>📍 台中市中區台灣大道一段388號（坂神車廂）</span>
+              <span>🕙 09:00–19:00</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週一公休</span></div>
+            <a class="map-btn amber" href="https://www.google.com/maps/search/?api=1&query=台中市中區台灣大道一段388號長崎屋" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🚃 日式長崎蛋糕，坂神列車主題超好拍，必買伴手禮！</div>
+      </div>
+
+      <!-- 前往嘉義 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🛣️</div>
+          <div class="activity-main">
+            <div class="activity-name">前往嘉義市區</div>
+            <div class="activity-sub">
+              <span>⏱ 台中→嘉義 約1.5小時（國道一號南下）</span>
+            </div>
+          </div>
+        </div>
+        <div class="note">💡 建議沿途選擇服務區停車上廁所、活動筋骨（約每1.5小時休息一次對長輩較友善）</div>
+      </div>
+
+      <!-- 奶油森林 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🧈</div>
+          <div class="activity-main">
+            <div class="activity-name">奶油森林</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市西區民棟路409號</span>
+              <span>🕙 11:00–19:00</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週二公休</span></div>
+            <a class="map-btn amber" href="https://www.google.com/maps/search/?api=1&query=嘉義市西區民棟路409號奶油森林" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🌿 嘉義文青咖啡空間，環境清幽，適合拍照留念</div>
+      </div>
+
+      <!-- 木曾憂森活 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🌳</div>
+          <div class="activity-main">
+            <div class="activity-name">木曾憂森活</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市東區林森東路1號</span>
+            </div>
+            <a class="map-btn amber" href="https://www.google.com/maps/search/?api=1&query=嘉義市東區林森東路1號木曾憂森活" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🍃 日式木質空間，適合悠閒下午茶或選購伴手禮</div>
+      </div>
+
+      <!-- 晚餐：北門沙鍋魚頭 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🍲</div>
+          <div class="activity-main">
+            <div class="activity-name">晚餐 ── 北門沙鍋魚頭</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市東區忠孝路284-1號</span>
+              <span>🕙 15:00–21:00</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週一公休</span></div>
+            <a class="map-btn amber" href="https://www.google.com/maps/search/?api=1&query=嘉義市東區忠孝路284-1號北門沙鍋魚頭" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🔥 嘉義百年名店！沙鍋魚頭湯底鮮美，冬暖夏也很讚，8人圍桌超熱鬧</div>
+      </div>
+
+      <!-- 阿美炸雞 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🍗</div>
+          <div class="activity-main">
+            <div class="activity-name">宵夜前小食 ── 阿美炸雞</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市東區民橋路146號</span>
+              <span>🕗 16:30–23:30</span>
+              <span>📞 0952-532807</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週一、週二公休</span></div>
+            <a class="map-btn amber" href="https://www.google.com/maps/search/?api=1&query=嘉義市東區民橋路146號阿美炸雞" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🍗 嘉義在地炸雞名攤，酥脆多汁，邊走邊吃最過癮！</div>
+      </div>
+
+      <!-- 文化夜市 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🏮</div>
+          <div class="activity-main">
+            <div class="activity-name">文化夜市</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市文化路夜市</span>
+            </div>
+            <a class="map-btn amber" href="https://www.google.com/maps/search/?api=1&query=嘉義市文化路觀光夜市" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🌙 嘉義最熱鬧夜市！可悠閒散步，有椅子可休息，不必每攤都站著</div>
+      </div>
+
+      <!-- 宵夜 -->
+      <div class="activity d1">
+        <div class="activity-top">
+          <div class="activity-icon">🍍</div>
+          <div class="activity-main">
+            <div class="activity-name">宵夜 ── 鳳梨切盤、滷味</div>
+            <div class="activity-sub">
+              <span>🕗 20:00–22:00</span>
+              <span>💰 $80 / 盤</span>
+            </div>
+          </div>
+        </div>
+        <div class="note">🍍 嘉義的現切鳳梨酸甜多汁，是夜市必吃！搭配滷味完美收尾</div>
+      </div>
+
+    </div><!-- end timeline -->
+  </div>
+</section>
+
+<div class="container"><div class="section-divider"></div></div>
+
+<!-- ===================== DAY 2 ===================== -->
+<section class="day-section" id="day2">
+  <div class="container">
+    <div class="day-header d2">
+      <div class="day-icon">🌲</div>
+      <div class="day-info">
+        <h2>第二天 ── 4月27日（日）</h2>
+        <p>阿里山森林鐵道・山中秘境・水幕秀</p>
+      </div>
+    </div>
+
+    <div class="senior-box">
+      <h3>👴👵 銀髮族小提醒</h3>
+      <ul>
+        <li>阿里山海拔約2,200公尺，早晨需加件薄外套（建議攜帶輕便雨衣）</li>
+        <li>山路蜿蜒，車程1.5–2小時，易暈車者請提前服藥並坐前座</li>
+        <li>步行選段較多，建議穿防滑運動鞋；累了隨時可搭小火車回站</li>
+        <li>阿里山森林步道有部分石板路，慢慢走不要趕，沿途景色就是享受</li>
+        <li>水幕秀入場後有座位可坐，非常適合長輩觀賞</li>
+      </ul>
+    </div>
+
+    <div class="timeline">
+
+      <!-- 早餐 -->
+      <div class="activity d2">
+        <div class="activity-top">
+          <div class="activity-icon">🍳</div>
+          <div class="activity-main">
+            <div class="activity-name">08:00 ｜ 飯店早餐</div>
+          </div>
+        </div>
+        <div class="note green">☀️ 好好吃飽！今天爬山行程，能量很重要</div>
+      </div>
+
+      <!-- 陳頂仙井咖啡 -->
+      <div class="activity d2">
+        <div class="activity-top">
+          <div class="activity-icon">☕</div>
+          <div class="activity-main">
+            <div class="activity-name">陳頂仙井咖啡館</div>
+            <div class="activity-sub">
+              <span>📍 番路鄉佃村陳頂80號</span>
+              <span>🕙 10:30–17:00</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週二、週三公休</span></div>
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=嘉義番路鄉佃村陳頂80號陳頂仙井咖啡館" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🌄 通往阿里山山路中途的隱世咖啡館，可停車休息、欣賞山谷風景，是長輩最愛的「歇腳仙境」</div>
+      </div>
+
+      <!-- 頎僑高山蔬果店 -->
+      <div class="activity d2">
+        <div class="activity-top">
+          <div class="activity-icon">🥬</div>
+          <div class="activity-main">
+            <div class="activity-name">頎僑高山蔬果店</div>
+            <div class="activity-sub">
+              <span>📍 竹崎鄉石棹19-12號</span>
+              <span>🕗 07:00–19:00</span>
+            </div>
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=嘉義竹崎鄉石棹19-12號頎僑高山蔬果店" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🌿 阿里山高山蔬菜、特產，可順路採買伴手禮，品質新鮮</div>
+      </div>
+
+      <!-- 十字路站+阿媽草仔粿 -->
+      <div class="activity d2">
+        <div class="activity-top">
+          <div class="activity-icon">🫕</div>
+          <div class="activity-main">
+            <div class="activity-name">十字路站參觀 ＋ 阿媽草仔粿</div>
+            <div class="activity-sub">
+              <span>📍 阿里山鄉30號</span>
+              <span>🕗 07:00–17:00</span>
+            </div>
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=阿里山鄉十字路站" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🌿 手工阿里山草仔粿，現做現賣，口感Q彈帶野草香，是道地山中小食</div>
+      </div>
+
+      <!-- 阿里山鐵道 -->
+      <div class="activity d2">
+        <div class="activity-top">
+          <div class="activity-icon">🚂</div>
+          <div class="activity-main">
+            <div class="activity-name">阿里山車站 ── 鐵道森林之旅</div>
+            <div class="activity-sub">
+              <span>📍 阿里山車站停車場</span>
+            </div>
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=阿里山車站" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="options">
+          <div class="option-label">行程選擇</div>
+          <div class="option-item">
+            🚃 <strong>遊園車直奔祝山站</strong> → 步行欣賞日出景觀台附近森林
+          </div>
+          <div class="option-item">
+            🌉 <strong>沼平站天空步道</strong>（可順道參觀阿里山閣大飯店）→ 搭小火車回阿里山車站
+          </div>
+        </div>
+        <div class="note green">👴 貼心建議：小火車可坐，步道有木棧道好走，選天空步道較適合長輩，景色壯闊又不用爬太多路</div>
+      </div>
+
+      <!-- 沼平站時刻表 -->
+      <div class="timetable">
+        <h3>🚂 沼平站小火車時刻表（供參考）</h3>
+        <div class="timetable-grid">
+          <div class="timetable-cell">09:00</div>
+          <div class="timetable-cell">09:30</div>
+          <div class="timetable-cell">10:00</div>
+          <div class="timetable-cell">10:30</div>
+          <div class="timetable-cell">11:00</div>
+          <div class="timetable-cell">11:30</div>
+          <div class="timetable-cell">13:00</div>
+          <div class="timetable-cell">13:30</div>
+          <div class="timetable-cell">14:00</div>
+          <div class="timetable-cell">14:30</div>
+          <div class="timetable-cell">15:10</div>
+          <div class="timetable-cell">15:40</div>
+        </div>
+        <div style="font-size:13px; color:var(--text-soft); margin-top:10px;">※ 時刻表請以現場或官方公告為準，建議提早候車</div>
+      </div>
+
+      <!-- 晚餐：永富古茶油雞 -->
+      <div class="activity alert">
+        <div class="activity-top">
+          <div class="activity-icon">🍗</div>
+          <div class="activity-main">
+            <div class="activity-name">晚餐 ── 永富古茶油雞 🔴需預訂</div>
+            <div class="activity-sub">
+              <span>📍 阿里山鄉樂野村樂野114-2</span>
+              <span>📞 05-2561488</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週二、週五公休</span></div>
+            <a class="map-btn" style="background:var(--red);" href="https://www.google.com/maps/search/?api=1&query=阿里山鄉樂野村樂野114-2永富古茶油雞" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note red">🔴 請務必於 4月10日前 致電 05-2561488 預訂！（週二五公休，4/27是週日，可以）</div>
+      </div>
+
+      <!-- 蘭澤水幕秀 -->
+      <div class="activity d2">
+        <div class="activity-top">
+          <div class="activity-icon">💦</div>
+          <div class="activity-main">
+            <div class="activity-name">蘭澤水幕秀（嘉義燈光水幕表演）</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市東區小梅路紅毛埤187號</span>
+            </div>
+            <div style="margin-top:6px;">
+              <span class="tag">18:30</span>
+              <span class="tag">19:30</span>
+              <span class="tag">20:30</span>
+              <span class="tag">21:30</span>
+            </div>
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=嘉義市東區小梅路紅毛埤187號蘭澤水幕" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">💡 燈光水幕投影秀，有座位可舒適觀賞，非常適合長輩，建議選 19:30 場次（晚餐後剛好）</div>
+      </div>
+
+      <!-- 回飯店 -->
+      <div class="activity d2">
+        <div class="activity-top">
+          <div class="activity-icon">🏨</div>
+          <div class="activity-main">
+            <div class="activity-name">回飯店梳洗休息</div>
+          </div>
+        </div>
+        <div class="note green">🛁 今天行程充實！長輩先泡個腳，讓腳部充分休息</div>
+      </div>
+
+      <!-- 宵夜：金馬肉粽 -->
+      <div class="activity d2">
+        <div class="activity-top">
+          <div class="activity-icon">🫔</div>
+          <div class="activity-main">
+            <div class="activity-name">宵夜 ── 金馬肉粽（嘉義特色）</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市東區重慶路369號</span>
+              <span>🕔 17:00–01:00</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週三公休</span></div>
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=嘉義市東區重慶路369號金馬肉粽" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🫔 嘉義乾式肉粽，不同台灣北部水煮粽，香氣十足、配湯絕配，宵夜首選！</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="section-divider"></div></div>
+
+<!-- ===================== DAY 3 ===================== -->
+<section class="day-section" id="day3">
+  <div class="container">
+    <div class="day-header d3">
+      <div class="day-icon">🌅</div>
+      <div class="day-info">
+        <h2>第三天 ── 4月28日（一）</h2>
+        <p>輕鬆自然醒 ➜ 故宮南院 ➜ 觀光工廠 ➜ 啟程回家</p>
+      </div>
+    </div>
+
+    <div class="senior-box">
+      <h3>👴👵 銀髮族小提醒</h3>
+      <ul>
+        <li>今天是自然醒，不趕時間，長輩睡飽最重要！</li>
+        <li>故宮南院室內展覽，全程冷氣，有輪椅借用，非常適合長輩</li>
+        <li>回程約4–5小時車程，建議下午4點前離開嘉義，沿途可選1個中繼站休息</li>
+        <li>中壢晚餐後到家約晚上9–10點，量力而為</li>
+      </ul>
+    </div>
+
+    <div class="timeline">
+
+      <!-- 自然醒+早餐 -->
+      <div class="activity d3">
+        <div class="activity-top">
+          <div class="activity-icon">😴</div>
+          <div class="activity-main">
+            <div class="activity-name">自然醒 ｜ 飯店早餐</div>
+          </div>
+        </div>
+        <div class="note green">☀️ 今天不趕！吃完早餐再慢慢收行李，10:00出發</div>
+      </div>
+
+      <!-- 牛奶茲藥 -->
+      <div class="activity d3">
+        <div class="activity-top">
+          <div class="activity-icon">🥛</div>
+          <div class="activity-main">
+            <div class="activity-name">10:00 出發 ── 牛奶茲藥</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市東區和平路122號</span>
+              <span>📞 0931-986355（林玉程）</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">3對廂需提前預訂・一行702元</span></div>
+            <a class="map-btn sky" href="https://www.google.com/maps/search/?api=1&query=嘉義市東區和平路122號牛奶茲藥" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note red">📞 需提前聯繫林玉程訂位，訂3對廂，費用702元，請確認已預約！</div>
+      </div>
+
+      <!-- 故宮南院 -->
+      <div class="activity d3">
+        <div class="activity-top">
+          <div class="activity-icon">🏛️</div>
+          <div class="activity-main">
+            <div class="activity-name">故宮南院（國立故宮博物院南部院區）</div>
+            <div class="activity-sub">
+              <span>📍 嘉義縣太保市故宮大道888號</span>
+              <span>🕙 09:00–18:00</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週一公休</span> <span class="tag red">⚠️ 4/28是週一，請再確認開放狀況！</span></div>
+            <a class="map-btn sky" href="https://www.google.com/maps/search/?api=1&query=嘉義縣太保市故宮大道888號故宮南院" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note red">⚠️ 故宮南院週一公休，4月28日（一）請提前確認是否照常開放，或列為備案！</div>
+      </div>
+
+      <!-- 觀光工廠 -->
+      <div class="activity d3">
+        <div class="activity-top">
+          <div class="activity-icon">☕</div>
+          <div class="activity-main">
+            <div class="activity-name">品皇咖啡觀光工廠</div>
+            <div class="activity-sub">
+              <span>📍 嘉義縣水上鄉大崙15號</span>
+              <span>🕗 08:00–17:00</span>
+            </div>
+            <a class="map-btn sky" href="https://www.google.com/maps/search/?api=1&query=嘉義水上鄉大崙15號品皇咖啡觀光工廠" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">☕ 室內有冷氣、可體驗咖啡DIY、購買伴手禮，非常適合長輩輕鬆遊覽</div>
+      </div>
+
+      <!-- 珍珍滷肉粽 -->
+      <div class="activity d3">
+        <div class="activity-top">
+          <div class="activity-icon">🫔</div>
+          <div class="activity-main">
+            <div class="activity-name">午餐①　珍珍滷肉粽 🏆</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市東區民族路151號</span>
+              <span>🕙 11:00–19:00</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag red">週日公休</span></div>
+            <a class="map-btn sky" href="https://www.google.com/maps/search/?api=1&query=嘉義市東區民族路151號珍珍滷肉粽" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🏆 嘉義夜市第一名！乾式滷肉粽香氣十足，CP值超高，必吃！</div>
+      </div>
+
+      <!-- 民主火雞肉飯 -->
+      <div class="activity d3">
+        <div class="activity-top">
+          <div class="activity-icon">🍗</div>
+          <div class="activity-main">
+            <div class="activity-name">午餐②　民主火雞肉飯</div>
+            <div class="activity-sub">
+              <span>📍 嘉義市民主路</span>
+              <span>🕙 10:00–20:00</span>
+            </div>
+            <a class="map-btn sky" href="https://www.google.com/maps/search/?api=1&query=嘉義民主火雞肉飯" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note">🍗 嘉義最具代表性火雞肉飯，油亮鮮甜，配上肉粽正好飽足！</div>
+      </div>
+
+    </div>
+
+    <!-- =========== 回程中繼站 =========== -->
+    <div class="return-options">
+      <h3>↩️ 回程中繼休息站（擇一）</h3>
+      <div class="return-grid">
+        <div class="return-item">
+          <span class="ri-icon">🏛️</span>
+          <strong>彰化鹿港<br>玻璃媽祖廟</strong>
+          <a class="map-btn" style="font-size:13px;" href="https://www.google.com/maps/search/?api=1&query=彰化鹿港玻璃媽祖廟" target="_blank">🗺 地圖</a>
+        </div>
+        <div class="return-item">
+          <span class="ri-icon">🧁</span>
+          <strong>彰化<br>優格餅乾學院</strong>
+          <a class="map-btn" style="font-size:13px;" href="https://www.google.com/maps/search/?api=1&query=彰化優格餅乾學院" target="_blank">🗺 地圖</a>
+        </div>
+        <div class="return-item">
+          <span class="ri-icon">🎭</span>
+          <strong>台中市<br>歌劇院</strong>
+          <a class="map-btn" style="font-size:13px;" href="https://www.google.com/maps/search/?api=1&query=台中國家歌劇院" target="_blank">🗺 地圖</a>
+        </div>
+        <div class="return-item">
+          <span class="ri-icon">🍖</span>
+          <strong>台中市<br>伊莫貝爾炭烤觀光工廠</strong>
+          <a class="map-btn" style="font-size:13px;" href="https://www.google.com/maps/search/?api=1&query=台中伊莫貝爾炭烤觀光工廠" target="_blank">🗺 地圖</a>
+        </div>
+      </div>
+      <div class="note" style="margin-top:14px;">💡 建議選擇其中一站即可，避免太晚到中壢晚餐，長輩也較不疲勞</div>
+    </div>
+
+    <!-- 晚餐：家家福 -->
+    <div class="timeline">
+      <div class="activity alert">
+        <div class="activity-top">
+          <div class="activity-icon">🥢</div>
+          <div class="activity-main">
+            <div class="activity-name">晚餐 ── 家家福客家料理 🔴需預訂</div>
+            <div class="activity-sub">
+              <span>📍 中壢區環西路69號</span>
+              <span>📞 08-4945228</span>
+            </div>
+            <div style="margin-top:6px;">
+              <span class="tag">午 11:00–14:00</span>
+              <span class="tag">晚 17:00–21:00</span>
+            </div>
+            <a class="map-btn" style="background:var(--red); margin-top:10px;" href="https://www.google.com/maps/search/?api=1&query=中壢區環西路69號家家福客家料理" target="_blank">🗺 地圖導航</a>
+          </div>
+        </div>
+        <div class="note red">🔴 請務必於 4月10日前 致電 08-4945228 預訂8人座！</div>
+      </div>
+    </div>
+
+    <!-- 菜單 -->
+    <div class="menu-card">
+      <h3>🍽️ 家家福客家料理 ── 預計菜單</h3>
+      <div class="menu-grid">
+        <div class="menu-item">🥜 花生豬腳</div>
+        <div class="menu-item">🐔 雞肉（中）</div>
+        <div class="menu-item">🥩 椒鹽排骨</div>
+        <div class="menu-item">🥬 客家小炒</div>
+        <div class="menu-item">🪿 韭菜鵝腸</div>
+        <div class="menu-item">🎋 上湯火燜桂筍</div>
+        <div class="menu-item">🥦 桔醬高麗菜</div>
+        <div class="menu-item">🍚 炒米苔目</div>
+      </div>
+      <div style="font-size:14px; color:var(--text-soft); margin-top:12px;">※ 客家料理口味樸實鮮甜，長輩接受度高，是完美的收尾晚宴</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== RESERVATIONS ===================== -->
+<section id="reservations">
+  <div class="container">
+    <div class="reservation-section">
+      <h2>🔴 重要預訂清單（截止日：4月10日）</h2>
+
+      <div class="res-item">
+        <h4>① 永富古茶油雞（第二天晚餐）</h4>
+        <p>📞 電話：<strong>05-2561488</strong></p>
+        <p>📍 阿里山鄉樂野村樂野114-2</p>
+        <p>⚠️ 告知日期：4月27日（日）、人數：8人</p>
+        <p>🗓 週二、週五公休，4/27週日可用</p>
+      </div>
+
+      <div class="res-item">
+        <h4>② 家家福客家料理（第三天晚餐）</h4>
+        <p>📞 電話：<strong>08-4945228</strong></p>
+        <p>📍 中壢區環西路69號</p>
+        <p>⚠️ 告知日期：4月28日（一）、人數：8人、預計到達時間</p>
+      </div>
+
+      <div class="res-item">
+        <h4>③ 牛奶茲藥（第三天早上）</h4>
+        <p>📞 聯絡人：<strong>林玉程 0931-986355</strong></p>
+        <p>📍 嘉義市東區和平路122號</p>
+        <p>⚠️ 訂3對廂，一行費用702元</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TIPS ===================== -->
+<section id="tips">
+  <div class="container">
+    <div class="tips-section">
+      <h2>🎒 旅遊小貼士（8人銀髮族同遊版）</h2>
+      <div class="tips-grid">
+
+        <div class="tips-card">
+          <h4>👕 穿著建議</h4>
+          <ul>
+            <li>嘉義平地氣溫約25–28°C，輕薄透氣為主</li>
+            <li>阿里山山區約15–20°C，薄外套或夾克必備</li>
+            <li>防滑運動鞋，避免拖鞋或皮鞋</li>
+            <li>備雨衣或折疊傘（山區易有午後雷陣雨）</li>
+          </ul>
+        </div>
+
+        <div class="tips-card">
+          <h4>💊 健康準備</h4>
+          <ul>
+            <li>暈車藥（阿里山路段山路蜿蜒）</li>
+            <li>個人常備藥、血壓藥請隨身攜帶</li>
+            <li>護膝、登山杖（爬坡路段使用）</li>
+            <li>防曬乳、太陽眼鏡</li>
+            <li>保溫水壺，多補充水分</li>
+          </ul>
+        </div>
+
+        <div class="tips-card">
+          <h4>🚗 交通安排</h4>
+          <ul>
+            <li>8人建議分兩台車，勿超載</li>
+            <li>阿里山公路建議上午上山、下午前下山</li>
+            <li>停車位預留充足時間，山區假日停車較難</li>
+            <li>回程不要開夜路，長輩眼力較弱</li>
+          </ul>
+        </div>
+
+        <div class="tips-card">
+          <h4>💰 費用提醒</h4>
+          <ul>
+            <li>阿里山入園費：每人150元</li>
+            <li>小火車票：沼平→阿里山 約100元</li>
+            <li>牛奶茲藥：702元/3對廂</li>
+            <li>鳳梨切盤：80元/盤</li>
+            <li>建議各自備現金，山區網路有時不穩</li>
+          </ul>
+        </div>
+
+        <div class="tips-card">
+          <h4>📱 緊急聯絡</h4>
+          <ul>
+            <li>嘉義市立醫院：05-233-1101</li>
+            <li>阿里山國家風景區服務中心：05-267-9917</li>
+            <li>旅遊緊急救援：0800-011-765</li>
+            <li>警察局：110｜消防救護：119</li>
+          </ul>
+        </div>
+
+        <div class="tips-card">
+          <h4>🌿 隨身必帶</h4>
+          <ul>
+            <li>健保卡（以防就醫需求）</li>
+            <li>手機充滿電，備行動電源</li>
+            <li>小零食、糖果（血糖調節）</li>
+            <li>濕紙巾、小毛巾</li>
+            <li>個人慣用的拐杖或登山杖</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div style="font-size:28px; margin-bottom:10px;">🌲🏔️🌿</div>
+  <strong>嘉義阿里山三天兩夜歡樂之旅</strong><br>
+  4月26日 – 4月28日 ｜ 8人同樂<br>
+  <div style="margin-top:12px; opacity:.6; font-size:13px;">
+    玩得開心、吃得盡興、平安回家 🙏<br>
+    祝全體旅遊愉快！
+  </div>
+</footer>
+
+<script>
+  // Highlight active day nav on scroll
+  const sections = ['day1','day2','day3','reservations','tips'];
+  const navLinks = document.querySelectorAll('.day-nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
