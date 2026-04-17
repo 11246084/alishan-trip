@@ -2245,10 +2245,11 @@
 
   /* ====================================================
      ACCOUNTING SYSTEM
-     ↓↓ 只需填入以下兩行 ↓↓
+     ↓↓ 只需填入以下三行 ↓↓
   ==================================================== */
-  const WORKER_URL = 'https://bitter-fire-94dc.11246084.workers.dev'
+  const WORKER_URL   = 'https://bitter-fire-94dc.11246084.workers.dev'
   const NOTION_DB_ID = '01b100fa1a6b4931807598d7eec5b2cb'
+  const MEMBERS      = 8  // 旅遊人數（用於計算每人平均）
   /* ====================================================
      ↑↑ Token 請設定在 Cloudflare Worker 環境變數裡 ↑↑
   ==================================================== */
@@ -2288,7 +2289,7 @@
       await notionRequest('/v1/pages', 'POST', {
         parent: { database_id: NOTION_DB_ID },
         properties: {
-          '名稱': { title: [{ text: { content: title || '（未填）' } }] },
+          '項目名稱': { title: [{ text: { content: title || '（未填）' } }] },
           '金額': { number: amount },
           '日期': { date: { start: date } },
           '類別': { select: { name: cat } }
@@ -2340,7 +2341,7 @@
         const p = page.properties;
         return {
           id:     page.id,
-          title:  p['名稱']?.title?.[0]?.plain_text || '（未命名）',
+          title:  p['項目名稱']?.title?.[0]?.plain_text || '（未命名）',
           amount: p['金額']?.number || 0,
           date:   p['日期']?.date?.start || '',
           cat:    p['類別']?.select?.name || '其他'
@@ -2385,11 +2386,18 @@
     `).join('');
 
     const total = list.reduce((s, e) => s + e.amount, 0);
+    const perPerson = Math.round(total / MEMBERS);
     tfoot.innerHTML = `
       <tr class="total-row">
         <td colspan="2"></td>
         <td>合計</td>
         <td class="amount-cell">$${total.toLocaleString()}</td>
+        <td></td>
+      </tr>
+      <tr style="background:#fdf5ff;">
+        <td colspan="2"></td>
+        <td style="font-size:13px;color:#6a1b8a;font-weight:700;">每人平均（${MEMBERS}人）</td>
+        <td style="font-size:15px;font-weight:800;color:#6a1b8a;">$${perPerson.toLocaleString()}</td>
         <td></td>
       </tr>
     `;
