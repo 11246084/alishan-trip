@@ -634,6 +634,243 @@
   margin-bottom: 4px;
   letter-spacing: 0.5px;
 }
+
+/* ============================================================ ACCOUNTING */
+.day-nav a.acct { color: #7b2d8b; }
+.day-nav a.acct:hover, .day-nav a.acct.active { border-color: #7b2d8b; color: #7b2d8b; }
+
+.acct-section { padding: 48px 0; }
+.acct-header {
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin-bottom: 36px;
+  background: linear-gradient(135deg, #6a1b8a, #9c27b0);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.acct-header .acct-icon { font-size: 48px; line-height: 1; }
+.acct-header h2 { font-size: 26px; font-weight: 900; }
+.acct-header p { font-size: 16px; opacity: .85; margin-top: 4px; }
+
+/* Settings panel */
+.acct-settings-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f3e5f5;
+  border: 1px solid #ce93d8;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #6a1b8a;
+  cursor: pointer;
+  margin-bottom: 16px;
+  width: 100%;
+  text-align: left;
+}
+.acct-settings-panel {
+  background: #fdf9ff;
+  border: 1px solid #ce93d8;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 28px;
+  display: none;
+}
+.acct-settings-panel.open { display: block; }
+.acct-settings-panel h4 {
+  font-size: 16px; font-weight: 700; color: #6a1b8a; margin-bottom: 16px;
+}
+.acct-settings-panel ol {
+  font-size: 14px; color: var(--text-mid); margin-bottom: 16px;
+  padding-left: 18px; line-height: 2;
+}
+.acct-settings-panel ol a { color: #7b2d8b; }
+.settings-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;
+}
+@media(max-width:600px){ .settings-row{ grid-template-columns:1fr; } }
+.acct-label { font-size: 13px; font-weight: 700; color: var(--text-mid); margin-bottom: 4px; }
+.acct-input {
+  width: 100%; padding: 10px 14px;
+  border: 1px solid #ce93d8; border-radius: 8px;
+  font-size: 15px; font-family: inherit;
+  background: #fff;
+  transition: border .2s;
+}
+.acct-input:focus { outline: none; border-color: #9c27b0; box-shadow: 0 0 0 3px rgba(156,39,176,.15); }
+.names-hint { font-size: 13px; color: var(--text-soft); margin-top: 4px; }
+
+/* Buttons */
+.btn-purple {
+  background: linear-gradient(135deg, #7b2d8b, #9c27b0);
+  color: #fff;
+  border: none; border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s, transform .1s;
+}
+.btn-purple:hover { opacity: .88; }
+.btn-purple:active { transform: scale(.97); }
+.btn-outline-purple {
+  background: transparent;
+  color: #7b2d8b;
+  border: 2px solid #9c27b0;
+  border-radius: 10px;
+  padding: 9px 22px;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-outline-purple:hover { background: #f3e5f5; }
+
+/* Add expense card */
+.acct-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+}
+.acct-card h3 {
+  font-size: 18px; font-weight: 800; color: #6a1b8a;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+@media(max-width:600px){ .form-grid{ grid-template-columns:1fr; } }
+.form-grid .full { grid-column: 1 / -1; }
+.acct-select {
+  width: 100%; padding: 10px 14px;
+  border: 1px solid #ce93d8; border-radius: 8px;
+  font-size: 15px; font-family: inherit;
+  background: #fff; cursor: pointer;
+  transition: border .2s;
+}
+.acct-select:focus { outline: none; border-color: #9c27b0; box-shadow: 0 0 0 3px rgba(156,39,176,.15); }
+.form-actions { display: flex; gap: 10px; justify-content: flex-end; }
+#acct-msg {
+  margin-top: 10px; font-size: 14px; font-weight: 600;
+  padding: 10px 16px; border-radius: 8px; display: none;
+}
+#acct-msg.success { background: #e8f5e9; color: #2e7d32; display: block; }
+#acct-msg.error   { background: #fdecea; color: #c62828; display: block; }
+#acct-msg.info    { background: #e3f2fd; color: #1565c0; display: block; }
+
+/* Expense list */
+.acct-toolbar {
+  display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;
+}
+.acct-search {
+  flex: 1; min-width: 160px;
+  padding: 9px 14px;
+  border: 1px solid #ce93d8; border-radius: 8px;
+  font-size: 14px; font-family: inherit;
+}
+.acct-search:focus { outline: none; border-color: #9c27b0; }
+
+.expense-table-wrap { overflow-x: auto; }
+.expense-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 15px;
+}
+.expense-table th {
+  background: #f3e5f5;
+  color: #6a1b8a;
+  font-weight: 700;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #ce93d8;
+  white-space: nowrap;
+}
+.expense-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.expense-table tr:last-child td { border-bottom: none; }
+.expense-table tr:hover td { background: #fdf5ff; }
+.cat-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 13px; font-weight: 600;
+}
+.cat-餐飲 { background: #fff3e0; color: #e65100; }
+.cat-交通 { background: #e3f2fd; color: #1565c0; }
+.cat-住宿 { background: #e8f5e9; color: #2e7d32; }
+.cat-門票 { background: #fce4ec; color: #880e4f; }
+.cat-購物 { background: #f3e5f5; color: #6a1b8a; }
+.cat-其他 { background: #f5f5f5; color: #555; }
+.amount-cell { font-weight: 700; color: #c62828; }
+.payer-badge {
+  display: inline-block;
+  background: #e8f5e9; color: #2e7d32;
+  border-radius: 20px; padding: 2px 10px;
+  font-size: 13px; font-weight: 600;
+}
+.btn-del {
+  background: none; border: none;
+  color: #bbb; cursor: pointer;
+  font-size: 18px; padding: 2px 6px;
+  border-radius: 6px; transition: color .2s;
+}
+.btn-del:hover { color: #c62828; background: #fdecea; }
+.no-data { text-align: center; padding: 32px; color: var(--text-soft); font-size: 16px; }
+
+/* Total row */
+.total-row { background: #f3e5f5; font-weight: 800; }
+.total-row td { border-top: 2px solid #ce93d8 !important; color: #6a1b8a; }
+
+/* Split summary */
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.split-card {
+  background: #fff;
+  border: 1px solid #ce93d8;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+.split-name { font-size: 14px; font-weight: 700; color: var(--text-mid); margin-bottom: 6px; }
+.split-paid { font-size: 22px; font-weight: 900; color: #6a1b8a; }
+.split-paid-label { font-size: 12px; color: var(--text-soft); }
+.split-should { font-size: 13px; color: var(--text-mid); margin-top: 4px; }
+.split-diff-pos { color: #2e7d32; font-weight: 700; }
+.split-diff-neg { color: #c62828; font-weight: 700; }
+
+.settle-list { list-style: none; padding: 0; }
+.settle-list li {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+.settle-list li:last-child { border-bottom: none; }
+.settle-arrow { color: #c62828; font-size: 18px; }
+.settle-amount { font-weight: 700; color: #c62828; }
+
+.loading-spinner {
+  display: inline-block; width: 18px; height: 18px;
+  border: 2px solid #ce93d8; border-top-color: #7b2d8b;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  vertical-align: middle; margin-right: 6px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -653,6 +890,7 @@
 <a class="d3" href="#day3">🔵 第三天</a>
 <a class="alert" href="#reservations">🔴 預訂提醒</a>
 <a href="#tips">🎒 旅遊小貼士</a>
+<a class="acct" href="#accounting">💰 旅遊記帳</a>
 </nav>
 <!-- ===================== DAY 1 ===================== -->
 <section class="day-section" id="day1">
@@ -1864,6 +2102,92 @@
 </div>
 </div>
 </section>
+<!-- ===================== ACCOUNTING ===================== -->
+<section class="acct-section" id="accounting">
+<div class="container">
+
+  <!-- Header -->
+  <div class="acct-header">
+    <div class="acct-icon">💰</div>
+    <div>
+      <h2>旅遊記帳系統</h2>
+      <p>記錄每筆花費，資料同步至 Notion</p>
+    </div>
+  </div>
+
+  <!-- Add Expense -->
+  <div class="acct-card">
+    <h3>➕ 新增支出</h3>
+    <div class="form-grid">
+      <div>
+        <div class="acct-label">日期</div>
+        <input class="acct-input" id="f-date" type="date" />
+      </div>
+      <div>
+        <div class="acct-label">金額（TWD）</div>
+        <input class="acct-input" id="f-amount" type="number" min="0" step="1" placeholder="0" />
+      </div>
+      <div class="full">
+        <div class="acct-label">說明</div>
+        <input class="acct-input" id="f-title" type="text" placeholder="例：阿里山入園費" maxlength="100" />
+      </div>
+      <div class="full">
+        <div class="acct-label">類別</div>
+        <select class="acct-select" id="f-cat">
+          <option value="餐飲">🍜 餐飲</option>
+          <option value="交通">🚗 交通</option>
+          <option value="住宿">🏨 住宿</option>
+          <option value="門票">🎟️ 門票</option>
+          <option value="購物">🛍️ 購物</option>
+          <option value="其他">📦 其他</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-outline-purple" onclick="clearForm()">清除</button>
+      <button class="btn-purple" onclick="addExpense()">新增支出</button>
+    </div>
+    <div id="acct-msg"></div>
+  </div>
+
+  <!-- Expense List -->
+  <div class="acct-card">
+    <h3>📋 支出清單</h3>
+    <div class="acct-toolbar">
+      <input class="acct-search" id="acct-search" type="text" placeholder="🔍 搜尋說明..." oninput="filterExpenses()" />
+      <select class="acct-select" id="filter-cat" style="width:auto;min-width:120px;" onchange="filterExpenses()">
+        <option value="">全部類別</option>
+        <option value="餐飲">餐飲</option>
+        <option value="交通">交通</option>
+        <option value="住宿">住宿</option>
+        <option value="門票">門票</option>
+        <option value="購物">購物</option>
+        <option value="其他">其他</option>
+      </select>
+      <button class="btn-purple" onclick="loadExpenses()" id="load-btn">🔄 載入資料</button>
+    </div>
+    <div class="expense-table-wrap">
+      <table class="expense-table" id="expense-table">
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>說明</th>
+            <th>類別</th>
+            <th>金額</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="expense-tbody">
+          <tr><td colspan="5" class="no-data">點「載入資料」從 Notion 讀取支出記錄</td></tr>
+        </tbody>
+        <tfoot id="expense-tfoot"></tfoot>
+      </table>
+    </div>
+  </div>
+
+</div>
+</section>
+
 <!-- ===================== FOOTER ===================== -->
 <footer>
 <div style="font-size:28px; margin-bottom:10px;">🌲🏔️🌿</div>
@@ -1904,7 +2228,7 @@
   });
 
   // Highlight active day nav on scroll
-  const sections = ['day1','day2','day3','reservations','tips'];
+  const sections = ['day1','day2','day3','reservations','tips','accounting'];
   const navLinks = document.querySelectorAll('.day-nav a');
 
   window.addEventListener('scroll', () => {
@@ -1918,6 +2242,173 @@
       if (link.getAttribute('href') === '#' + current) link.classList.add('active');
     });
   });
+
+  /* ====================================================
+     ACCOUNTING SYSTEM
+     ↓↓ 只需填入以下兩行 ↓↓
+  ==================================================== */
+  const WORKER_URL = '在這裡貼上你的 Worker 網址'; // 例：https://notion-proxy.你的名字.workers.dev
+  const NOTION_DB_ID = '在這裡貼上 Database ID';   // 例：abc123def456...
+  /* ====================================================
+     ↑↑ Token 請設定在 Cloudflare Worker 環境變數裡 ↑↑
+  ==================================================== */
+
+  // ---- State ----
+  let allExpenses = [];
+
+  // ---- Init ----
+  document.getElementById('f-date').valueAsDate = new Date();
+
+  // ---- Notion API via Cloudflare Worker ----
+  async function notionRequest(path, method, body) {
+    const url = WORKER_URL + path;
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.message || JSON.stringify(json));
+    return json;
+  }
+
+  // ---- Add Expense ----
+  async function addExpense() {
+    const title  = document.getElementById('f-title').value.trim();
+    const amount = parseFloat(document.getElementById('f-amount').value);
+    const date   = document.getElementById('f-date').value;
+    const cat    = document.getElementById('f-cat').value;
+
+    if (!amount || amount <= 0) { showMsg('請填寫正確金額', 'error'); return; }
+    if (!date)               { showMsg('請選擇日期', 'error'); return; }
+
+    showMsg('<span class="loading-spinner"></span> 新增中…', 'info');
+
+    try {
+      await notionRequest('/v1/pages', 'POST', {
+        parent: { database_id: NOTION_DB_ID },
+        properties: {
+          '名稱': { title: [{ text: { content: title || '（未填）' } }] },
+          '金額': { number: amount },
+          '日期': { date: { start: date } },
+          '類別': { select: { name: cat } }
+        }
+      });
+      showMsg('✅ 新增成功！', 'success');
+      clearForm();
+      loadExpenses();
+    } catch(e) {
+      showMsg('❌ 新增失敗：' + e.message, 'error');
+    }
+  }
+
+  function clearForm() {
+    document.getElementById('f-title').value = '';
+    document.getElementById('f-amount').value = '';
+    document.getElementById('f-date').valueAsDate = new Date();
+    document.getElementById('f-cat').value = '餐飲';
+    document.getElementById('acct-msg').style.display = 'none';
+  }
+
+  function showMsg(html, type) {
+    const el = document.getElementById('acct-msg');
+    el.innerHTML = html;
+    el.className = type;
+    el.style.display = 'block';
+  }
+
+  // ---- Load Expenses ----
+  async function loadExpenses() {
+    const btn = document.getElementById('load-btn');
+    btn.innerHTML = '<span class="loading-spinner"></span> 載入中…';
+    btn.disabled = true;
+
+    try {
+      let results = [], cursor;
+      do {
+        const payload = {
+          page_size: 100,
+          sorts: [{ property: '日期', direction: 'descending' }]
+        };
+        if (cursor) payload.start_cursor = cursor;
+        const data = await notionRequest('/v1/databases/' + NOTION_DB_ID + '/query', 'POST', payload);
+        results = results.concat(data.results);
+        cursor = data.has_more ? data.next_cursor : undefined;
+      } while (cursor);
+
+      allExpenses = results.map(page => {
+        const p = page.properties;
+        return {
+          id:     page.id,
+          title:  p['名稱']?.title?.[0]?.plain_text || '（未命名）',
+          amount: p['金額']?.number || 0,
+          date:   p['日期']?.date?.start || '',
+          cat:    p['類別']?.select?.name || '其他'
+        };
+      });
+      renderExpenses(allExpenses);
+    } catch(e) {
+      alert('載入失敗：' + e.message);
+    } finally {
+      btn.innerHTML = '🔄 載入資料';
+      btn.disabled = false;
+    }
+  }
+
+  function filterExpenses() {
+    const q   = document.getElementById('acct-search').value.toLowerCase();
+    const cat = document.getElementById('filter-cat').value;
+    renderExpenses(allExpenses.filter(e =>
+      (!q   || e.title.toLowerCase().includes(q)) &&
+      (!cat || e.cat === cat)
+    ));
+  }
+
+  function renderExpenses(list) {
+    const tbody = document.getElementById('expense-tbody');
+    const tfoot = document.getElementById('expense-tfoot');
+
+    if (!list.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="no-data">目前沒有支出記錄</td></tr>';
+      tfoot.innerHTML = '';
+      return;
+    }
+
+    tbody.innerHTML = list.map(e => `
+      <tr>
+        <td>${e.date}</td>
+        <td>${escHtml(e.title)}</td>
+        <td><span class="cat-badge cat-${e.cat}">${e.cat}</span></td>
+        <td class="amount-cell">$${e.amount.toLocaleString()}</td>
+        <td><button class="btn-del" onclick="deleteExpense('${e.id}')" title="刪除">🗑</button></td>
+      </tr>
+    `).join('');
+
+    const total = list.reduce((s, e) => s + e.amount, 0);
+    tfoot.innerHTML = `
+      <tr class="total-row">
+        <td colspan="2"></td>
+        <td>合計</td>
+        <td class="amount-cell">$${total.toLocaleString()}</td>
+        <td></td>
+      </tr>
+    `;
+  }
+
+  async function deleteExpense(pageId) {
+    if (!confirm('確定要刪除這筆記錄嗎？')) return;
+    try {
+      await notionRequest('/v1/pages/' + pageId, 'PATCH', { archived: true });
+      allExpenses = allExpenses.filter(e => e.id !== pageId);
+      filterExpenses();
+    } catch(e) {
+      alert('刪除失敗：' + e.message);
+    }
+  }
+
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
 </script>
 </body>
 </html>
